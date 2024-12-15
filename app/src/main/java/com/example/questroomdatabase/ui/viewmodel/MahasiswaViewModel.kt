@@ -40,3 +40,25 @@ class MahasiswaViewModel(private val repositoryMhs: RepositoryMhs) : ViewModel()
         }
     }
 }
+// Data class untuk menyimpan UI state
+data class MhsUiState(
+    val mahasiswaEvent: MahasiswaEvent = MahasiswaEvent(), // Data form saat ini
+    val isEntryValid: FormErrorState = FormErrorState(), // Status validasi
+    val snackbarMessage: String? = null // Pesan yang akan ditampilkan di UI
+)
+
+// Data class untuk validasi form
+data class FormErrorState(
+    val nim: String? = null, // Error message untuk NIM
+    val nama: String? = null, // Error message untuk Nama
+    val jenisKelamin: String? = null, // Error message untuk Jenis Kelamin
+    val alamat: String? = null, // Error message untuk Alamat
+    val kelas: String? = null, // Error message untuk Kelas
+    val angkatan: String? = null, // Error message untuk Angkatan
+) {
+    // Fungsi untuk memeriksa apakah semua input valid
+    fun isValid(): Boolean {
+        return nim == null && nama == null && jenisKelamin == null &&
+                alamat == null && kelas == null && angkatan == null
+    }
+}
