@@ -1,9 +1,16 @@
 package com.example.questroomdatabase.ui.viewmodel
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.questroomdatabase.Data.entity.Mahasiswa
+import com.example.questroomdatabase.repository.RepositoryMhs
+import com.example.questroomdatabase.ui.navigation.DestinasiDetail
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class UpdateMhsViewModel(
@@ -73,3 +80,4 @@ class UpdateMhsViewModel(
 }
 fun Mahasiswa.toUiStateMhs(): MhsUiState = MhsUiState(
     mahasiswaEvent = this.toDetailUiEvent(),
+)

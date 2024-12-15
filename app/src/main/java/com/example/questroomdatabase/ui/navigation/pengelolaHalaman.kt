@@ -70,3 +70,27 @@ fun pengelolaHalaman(
                 )
             }
         }
+        // Perbaikan: Pastikan nama rute sesuai dengan yang didefinisikan di DestinasiUpdate
+        composable(
+            DetinasiUpdate.routesWithArg,
+            arguments = listOf(
+                navArgument(DetinasiUpdate.NIM) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val nim = it.arguments?.getString(DetinasiUpdate.NIM)
+            nim?.let {
+                UpdateMhsView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onNavigate = {
+                        navController.popBackStack()
+                    },
+                    modifier = modifier,
+                )
+            }
+        }
+    }
+}
