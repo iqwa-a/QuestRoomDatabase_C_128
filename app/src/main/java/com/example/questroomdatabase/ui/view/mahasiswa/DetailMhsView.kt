@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -114,3 +116,51 @@ fun BodyDetailMhs(
                 }
             }
         }
+        detailUiState.isUiEventNotEmpty == false -> {
+            Box(
+                modifier = modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Data Tidak ditemukan",
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+    }
+}
+@Composable
+fun ItemDetailMhs(
+    modifier: Modifier = Modifier,
+    mahasiswa: Mahasiswa
+) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            contentColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            componentDetailMhs(judul = "NIM", isinya = mahasiswa.nim)
+            Spacer(modifier = Modifier.padding(4.dp))
+
+            componentDetailMhs(judul = "Nama", isinya = mahasiswa.nama)
+            Spacer(modifier = Modifier.padding(4.dp))
+
+            componentDetailMhs(judul = "Alamat", isinya = mahasiswa.alamat)
+            Spacer(modifier = Modifier.padding(4.dp))
+
+            componentDetailMhs(judul = "Jenis Kelamin", isinya = mahasiswa.jenisKelamin)
+            Spacer(modifier = Modifier.padding(4.dp))
+
+            componentDetailMhs(judul = "Kelas", isinya = mahasiswa.kelas)
+            Spacer(modifier = Modifier.padding(4.dp))
+
+            componentDetailMhs(judul = "Angkatan", isinya = mahasiswa.angkatan)
+            Spacer(modifier = Modifier.padding(4.dp))
+        }
+    }
+}
