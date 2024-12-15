@@ -20,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -30,6 +31,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.questroomdatabase.Data.entity.Mahasiswa
+import com.example.questroomdatabase.ui.contumwidget.TopAppBar
+import com.example.questroomdatabase.ui.viewmodel.DetailMhsViewModel
+import com.example.questroomdatabase.ui.viewmodel.DetailUiState
+import com.example.questroomdatabase.ui.viewmodel.penyediaViewModel
+import com.example.questroomdatabase.ui.viewmodel.toMahasiswaEntity
 
 @Composable
 fun DetailMhsView(

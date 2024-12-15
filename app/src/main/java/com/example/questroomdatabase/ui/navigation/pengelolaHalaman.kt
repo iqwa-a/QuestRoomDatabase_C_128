@@ -73,6 +73,7 @@ fun pengelolaHalaman(
                 )
             }
         }
+
         // Perbaikan: Pastikan nama rute sesuai dengan yang didefinisikan di DestinasiUpdate
         composable(
             DetinasiUpdate.routesWithArg,

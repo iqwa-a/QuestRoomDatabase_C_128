@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
@@ -37,6 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.questroomdatabase.Data.entity.Mahasiswa
 import com.example.questroomdatabase.ui.contumwidget.TopAppBar
 import com.example.questroomdatabase.ui.viewmodel.HomeMhsViewModel
+import com.example.questroomdatabase.ui.viewmodel.HomeUiState
 import com.example.questroomdatabase.ui.viewmodel.penyediaViewModel
 import kotlinx.coroutines.launch
 
