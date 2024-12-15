@@ -3,6 +3,7 @@ package com.example.questroomdatabase.ui.view.mahasiswa
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
@@ -109,5 +110,27 @@ fun BodyHomeMhsView(
                 modifier = modifier
             )
         }
+    }
+}
+
+
+@Composable
+fun ListMahasiswa(
+    listMhs: List<Mahasiswa>,
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit = { }
+) {
+    LazyColumn(
+        modifier = modifier
+    ) {
+        items(
+            items = listMhs,
+            itemContent = { mhs ->
+                CardMhs(
+                    mhs = mhs,
+                    onClick = { onClick(mhs.nim) } // Pass the nim to onClick
+                )
+            }
+        )
     }
 }
