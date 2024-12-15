@@ -1,15 +1,20 @@
 package com.example.questroomdatabase.ui.view.mahasiswa
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
@@ -61,6 +66,32 @@ fun InsertMhsView(
                     onNavigate()
                 }
             )
+        }
+    }
+}
+@Composable
+fun InsertBodyMhs(
+    modifier: Modifier = Modifier,
+    onValueChange: (MahasiswaEvent) -> Unit,
+    uiState: MhsUiState,
+    onClick: () -> Unit
+){
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FormMahasiswa(
+            mahasiswaEvent = uiState.mahasiswaEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(text = "Simpan")
         }
     }
 }
