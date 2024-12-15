@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 // ViewModel untuk mengelola data Mahasiswa dan logika UI
 class MahasiswaViewModel(private val repositoryMhs: RepositoryMhs) : ViewModel() {
+
     // State untuk menyimpan data yang akan digunakan di UI
     var uiState by mutableStateOf(MhsUiState())
         private set
@@ -41,7 +42,36 @@ class MahasiswaViewModel(private val repositoryMhs: RepositoryMhs) : ViewModel()
             )
         }
     }
+
+    // Fungsi untuk memperbarui state mahasiswaEvent
+    fun updateState(mahasiswaEvent: MahasiswaEvent) {
+        uiState = uiState.copy(
+            mahasiswaEvent = mahasiswaEvent
+        )
+    }
+
+    // Fungsi untuk mereset pesan snackbar
+    fun resetSnackBarMessage() {
+        uiState = uiState.copy(snackbarMessage = null)
+    }
+
+    // Fungsi untuk memvalidasi input form
+    private fun validateField(): Boolean {
+        val event = uiState.mahasiswaEvent
+        // Membuat state error berdasarkan input form
+        val errorState = FormErrorState(
+            nim = if (event.nim.isNotEmpty()) null else "NIM tidak boleh kosong",
+            nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
+            jenisKelamin = if (event.jenisKelamin.isNotEmpty()) null else "Jenis kelamin tidak boleh kosong",
+            alamat = if (event.alamat.isNotEmpty()) null else "Alamat tidak boleh kosong",
+            kelas = if (event.kelas.isNotEmpty()) null else "Kelas tidak boleh kosong",
+            angkatan = if (event.angkatan.isNotEmpty()) null else "Angkatan tidak boleh kosong",
+        )
+        uiState = uiState.copy(isEntryValid = errorState) // Update state UI
+        return errorState.isValid() // Mengembalikan hasil validasi
+    }
 }
+
 // Data class untuk menyimpan UI state
 data class MhsUiState(
     val mahasiswaEvent: MahasiswaEvent = MahasiswaEvent(), // Data form saat ini
@@ -64,6 +94,7 @@ data class FormErrorState(
                 alamat == null && kelas == null && angkatan == null
     }
 }
+
 // Fungsi ekstensi untuk mengubah MahasiswaEvent menjadi Mahasiswa (entity)
 fun MahasiswaEvent.toMahasiswaEntity(): Mahasiswa = Mahasiswa(
     nim = nim,
