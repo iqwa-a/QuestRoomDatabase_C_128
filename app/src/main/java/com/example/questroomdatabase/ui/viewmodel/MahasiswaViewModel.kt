@@ -62,3 +62,22 @@ data class FormErrorState(
                 alamat == null && kelas == null && angkatan == null
     }
 }
+// Fungsi ekstensi untuk mengubah MahasiswaEvent menjadi Mahasiswa (entity)
+fun MahasiswaEvent.toMahasiswaEntity(): Mahasiswa = Mahasiswa(
+    nim = nim,
+    nama = nama,
+    jenisKelamin = jenisKelamin,
+    alamat = alamat,
+    kelas = kelas,
+    angkatan = angkatan
+)
+
+// Data class untuk menangani input form
+data class MahasiswaEvent(
+    val nim: String = "", // Input NIM
+    val nama: String = "", // Input Nama
+    val jenisKelamin: String = "", // Input Jenis Kelamin
+    val alamat: String = "", // Input Alamat
+    val kelas: String = "", // Input Kelas
+    val angkatan: String = "" // Input Angkatan
+)
