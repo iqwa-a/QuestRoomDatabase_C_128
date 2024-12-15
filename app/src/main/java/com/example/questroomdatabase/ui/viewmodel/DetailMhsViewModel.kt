@@ -51,3 +51,28 @@ class DetailMhsViewModel(
         }
     }
 }
+
+data class DetailUiState(
+    val detailUiEvent: MahasiswaEvent = MahasiswaEvent(),
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
+    val errorMessage: String = ""
+) {
+    // Perbaiki penghapusan duplikasi properti isUiEventEmpty
+    val isUiEventNotEmpty: Boolean  // Properti untuk memeriksa jika detailUiEvent tidak kosong
+        get() = detailUiEvent != MahasiswaEvent()
+
+    val isUiEventEmpty: Boolean  // Properti untuk memeriksa jika detailUiEvent kosong
+        get() = detailUiEvent == MahasiswaEvent()
+}
+
+fun Mahasiswa.toDetailUiEvent(): MahasiswaEvent {
+    return MahasiswaEvent(
+        nim = nim,
+        nama = nama,
+        jenisKelamin = jenisKelamin,
+        alamat = alamat,
+        kelas = kelas,
+        angkatan = angkatan
+    )
+}
